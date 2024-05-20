@@ -26,7 +26,9 @@ inner join author a
 select p.*, a.email
 from post p
 left join author a -- left outer join 이랑 같은데 outer 생략 가능 
-    on p.author_id=a.id
+    on p.author_id=a.id;
+
+-- ///////////////////////////////////////////////////////////////////////////////
 
 -- join된 상황에서 where 조건 : on 뒤에 where 조건 나옴
 -- 1) 글쓴이가 있는 글 중에 글의 title과 저자의 email을 출력. 근데 저자의 나이는 25세 이상
@@ -42,4 +44,5 @@ select p.title, a.email
 from post p
 left join author a
     on a.id = p.author_id
-where date_format(created_date, '%Y-%m-%d')>'2024-05-01'; -- 에러 (아직 해결x) 
+where date_format(p.created_date, '%Y-%m-%d')>'2024-05-01'; -- 에러 (아직 해결x) 
+where p.created_date > '2024-05-01'; -- 일 수도 ? 
