@@ -6,7 +6,7 @@ insert into author(id, name, email) values(1, 'hong', 'abc@naver.com');
 insert into posts(id, title, content, author_id) values(101, 'title임', 'content임', 1);
 
 
--- select : 데이터 조회
+-- select : 데이터 조회 
 select * from author;
 
 -- 테이블 제약조건 조회 (다른 스키마 조회하려면 information_schema.가  필요함)

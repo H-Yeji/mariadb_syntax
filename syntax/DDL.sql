@@ -24,7 +24,7 @@ create table author(
 -- 테이블 컬럼조회
 describe author;
 
--- 컬럼 상세 조회 (author 테이블의 )
+-- 컬럼 상세 조회 (author 테이블의)
 show full columns from author;
 
 -- 테이블 생성문 조회
@@ -45,7 +45,7 @@ create table posts(
 create database test1;
 drop database test1;
 
--- 테이블 index 조회 (pk/fk로 걸린게 index로 잡힘 )
+-- 테이블 index 조회 (pk/fk로 걸린게 index로 잡힘 ) 
 show index from author;
 show index from posts;
 
