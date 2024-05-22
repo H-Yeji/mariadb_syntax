@@ -9,5 +9,5 @@ select o.ANIMAL_ID, o.name
 from ANIMAL_OUTS o 
 left join ANIMAL_INS i
     on o.ANIMAL_ID=i.ANIMAL_ID
-where i.ANIMAL_ID is null
+where i.ANIMAL_ID is null -- out에는 있고 in에는 없는 것을 찾아야 함 
 order by i.ANIMAL_ID asc;
