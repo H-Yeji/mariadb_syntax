@@ -94,12 +94,6 @@ select author_id from post group by author_id;
 select author_id, count(*) as cnt, sum(price) as sum, round(avg(price), 0) as avg, min(price) as min, max(price) as max
 from post group by author_id;
 
--- 추가
--- group by와 집계함수 
-select author_id from post group by author_id;
-select author_id, count(*) as cnt, sum(price) as sum, round(avg(price), 0) as avg, min(price) as min, max(price) as max
-from post group by author_id;
-
  -- 이렇게 작성하면 글 작성한 6, 12 제외하고 나머지가 0이어야 하는데 1로 나옴 
  -- 이렇게 나오는 이유 : count는 row의 수를 카운팅하기 때문에 1개로 출력됨 
 select a.id, count(*) from author a
