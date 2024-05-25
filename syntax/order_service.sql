@@ -1,4 +1,3 @@
-
 -- user 테이블 생성 
 create table user(
 	id int not null auto_increment,
@@ -43,9 +42,9 @@ create table product(
     stock int,
     seller_id int,
     primary key(id),
-    foreign key(seller_id) references seller(id)
+    foreign key(seller_id) references seller(id) 
 );
-alter table product modify column seller_id int default null;
+alter table product modify column seller_id int not null;
 -- product에 데이터 넣기 
 describe product;
 insert into product(product_name, stock, seller_id) values('apple', 10, 1);
@@ -103,7 +102,7 @@ describe seller;
 insert into seller(name, email) values('seller1', 'seller1@test.com');
 insert into seller(name, email) values('seller2', 'seller2@test.com');
 insert into seller(name, email) values('seller3', 'seller3@test.com');
-select * from seller;
+select * from seller; 
 
 -- 프로시저로 트랜잭션 테스트
 -- (1) 주문 프로시저 
@@ -143,13 +142,20 @@ select * from product;
 
 -- (2) 판매 프로시저 
 DELIMITER //
-CREATE PROCEDURE 판매(in userName varchar(255), in item varchar(255), in cnt int)
+CREATE PROCEDURE 판매(in sellerName varchar(255), in item varchar(255), in cnt int)
 BEGIN
-	DECLARE userID int;
+	DECLARE sellerID int;
+    DECLARE productID int;
     
-    select id into userID from user where name=userName;
+    select id into sellerID from seller where name=sellerName;
     -- if 상품이 존재하면 cnt를 stock에 증가
-    -- 없으면 새로 등록 
+    -- else 없다면 insert해주기 
+    select id into productID from product where product_name=item;
+	IF productID IS NOT NULL THEN
+		update product set stock = stock + cnt where id=productID;
+	else
+		insert into product(product_name, stock, seller_id) values(item, cnt, sellerID);
+	end if;
 END 
 // DELIMITER ;
 
@@ -165,4 +171,4 @@ BEGIN
 		where delYN='Y'
 	);
 END 
-// DELIMITER ;
+// DELIMITER ; 
