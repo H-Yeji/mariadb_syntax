@@ -183,5 +183,24 @@ zadd recent:products 192430 apple
 # 결과 : zrange로 하면 1이 banana (우선순위 제일 낮음), apple이 덮어써져서 마지막 출력
 zrange recent:products 0 2
 zrevrange recent:products 0 2
-# 중복 -> 덮어써지는 것 확인 (apple이 가장 마지막 우선순위걸로 덮어써짐)
+# 중복 -> 덮어써지는 것 확인 (apple이 가장 마지막 우선순위걸로 덮어써짐) -> 체크
+
+
+# ================================hashes================================
+# 해당 자료구조에서는 문자, 숫자가 구분  
+hset product:1 name "apple" price 1000 stock 50
+
+hget product:1 name # name을 얻고싶다
+hget product:1 price # price를 얻고싶다
+hget product:1 stock # stock을 얻고싶다
+
+# 전부 꺼내오고 싶다
+hgetall product:1
+
+# 특정 요소값 수정
+hset product:1 stock 40 # stock에 가서 알아서 덮어쓰기
+
+# 특정 요소의 값을 증가
+hincrby product:1 stock 5 # 재고를 5만큼 증가 시키기
+hincrby product:1 stock -5 # 감소 
 
