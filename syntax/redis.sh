@@ -204,3 +204,4 @@ hset product:1 stock 40 # stock에 가서 알아서 덮어쓰기
 hincrby product:1 stock 5 # 재고를 5만큼 증가 시키기
 hincrby product:1 stock -5 # 감소 
 
+
